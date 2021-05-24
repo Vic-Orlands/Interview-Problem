@@ -1,10 +1,10 @@
 import React, { useState, useReducer } from 'react';
+import { useHistory } from 'react-router-dom';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import classes from './Login.module.css';
-import { useHistory } from 'react-router-dom';
 
-import loaderGif from '../../assets/loading.gif';
 import axios from 'axios';
+import loaderGif from '../../assets/loading.gif';
 
 // import { withCookies, Cookies } from 'react-cookie';
 const Login = () => {
