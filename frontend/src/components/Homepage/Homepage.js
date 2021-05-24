@@ -8,12 +8,12 @@ import Nav from '../Nav/Nav';
 import Sidemenu from '../Sidemenu/Sidemenu';
 
 const Homepage = () => {
-	const [openModal, setOpenModal] = useState(false);
-	const [availability, setAvailability] = useState('all');
+	const [ openModal, setOpenModal ] = useState(false);
+	const [ availability, setAvailability ] = useState('all');
 	const availabilityQuery = useRef(null);
-	const [employees, setEmployees] = useState([]);
-	const [filteredEmployees, setFilteredEmployees] = useState([]);
-	const [employee, setEmployee] = useState(null);
+	const [ employees, setEmployees ] = useState([]);
+	const [ filteredEmployees, setFilteredEmployees ] = useState([]);
+	const [ employee, setEmployee ] = useState(null);
 
 	const openUserDetails = (employee) => {
 		setEmployee(employee);
@@ -32,7 +32,7 @@ const Homepage = () => {
 		}
 	};
 
-	// filtering the array when searching
+	// filtering the array when searching for location, department and availablility
 	const search = (search) => {
 		let newList = [];
 		if (search !== '') {
@@ -77,8 +77,13 @@ const Homepage = () => {
 
 					<label htmlFor="">
 						Filter list by availability
-						<select name="" id="" ref={availabilityQuery} onChange={() => setAvailability(availabilityQuery.current.value)}>
-							<option value='all' >All</option>
+						<select
+							name=""
+							id=""
+							ref={availabilityQuery}
+							onChange={() => setAvailability(availabilityQuery.current.value)}
+						>
+							<option value="all">All</option>
 							<option value="false">Not Available</option>
 							<option value="true">Is Available</option>
 						</select>
@@ -94,38 +99,38 @@ const Homepage = () => {
 					<br />
 					<hr />
 
-					{filteredEmployees.filter((employee) => {
-						if (availability === 'true' && !employee.isAvailable)
-							return false;
-						if (availability === 'false' && employee.isAvailable)
-							return false;
-						return true
-					}).map((employee, index) => (
-						<article key={index}>
-							<div>
-								<h4 onClick={() => openUserDetails(employee)}>{employee.name}</h4>
+					{filteredEmployees
+						.filter((employee) => {
+							if (availability === 'true' && !employee.isAvailable) return false;
+							if (availability === 'false' && employee.isAvailable) return false;
+							return true;
+						})
+						.map((employee, index) => (
+							<article key={index}>
+								<div>
+									<h4 onClick={() => openUserDetails(employee)}>{employee.name}</h4>
 
-								<div className={classes['category']}>
-									<h6>{`Location: ${employee.location}`}</h6>
+									<div className={classes['category']}>
+										<h6>{`Location: ${employee.location}`}</h6>
 
-									<h6>
-										<IoMdPerson size={18} className={classes['person-icon']} />
-										Is Available: <b>{employee.isAvailable ? 'yes' : 'No'}</b>
-									</h6>
+										<h6>
+											<IoMdPerson size={18} className={classes['person-icon']} />
+											Is Available: <b>{employee.isAvailable ? 'yes' : 'No'}</b>
+										</h6>
+									</div>
 								</div>
-							</div>
 
-							<h5 className={employee.isAvailable ? classes['meeting'] : classes['no-meeting']}>
-								{employee.isAvailable ? (
-									'Schedule a meeting'
-								) : (
-									'Can not schedule a meeting at this time'
-								)}
-							</h5>
+								<h5 className={employee.isAvailable ? classes['meeting'] : classes['no-meeting']}>
+									{employee.isAvailable ? (
+										'Schedule a meeting'
+									) : (
+										'Can not schedule a meeting at this time'
+									)}
+								</h5>
 
-							<h5 className={classes['dpt']}>{employee.department}</h5>
-						</article>
-					))}
+								<h5 className={classes['dpt']}>{employee.department}</h5>
+							</article>
+						))}
 				</section>
 			</section>
 
