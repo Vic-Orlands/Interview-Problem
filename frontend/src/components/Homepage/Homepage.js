@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import Nav from '../Nav/Nav';
 import Sidemenu from '../Sidemenu/Sidemenu';
+import { FaCommentsDollar } from 'react-icons/fa';
 
 const Homepage = () => {
 	const [openModal, setOpenModal] = useState(false);
@@ -38,8 +39,9 @@ const Homepage = () => {
 		if (search !== '') {
 			newList = employees.filter((employ) => {
 				const str = employ.location.toLowerCase();
+				const dpt = employ.department.toLowerCase();
 				const filter = search.toLowerCase();
-				return str.includes(filter);
+				return str.includes(filter) || dpt.includes(filter);
 			});
 		} else {
 			newList = employees;

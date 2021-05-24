@@ -88,6 +88,7 @@
 	line-height: 15px;
 	text-decoration-line: underline;
 	color: #1b5bac;
+	cursor: pointer;
 }
 
 .center-container .innerPasswrd input {

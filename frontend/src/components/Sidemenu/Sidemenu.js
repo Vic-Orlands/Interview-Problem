@@ -6,13 +6,18 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import classes from './Sidemenu.module.css';
 
 const Sidemenu = () => {
+	const signOut = () => {
+		window.localStorage.removeItem('knack_login');
+		window.location.reload();
+	};
+
 	return (
 		<div className={classes['sidemenu-container']}>
-				<h1>
-					<b>Knacklab.co</b>
-				</h1>
+			<h1>
+				<b>Knacklab.co</b>
+			</h1>
 
-				<hr/>
+			<hr />
 
 			<ul className={classes['sidemenu-list']}>
 				<NavLink exact to="/home" className={classes['active']}>
@@ -24,7 +29,7 @@ const Sidemenu = () => {
 			<footer>
 				<ul>
 					<FaSignOutAlt className={`${classes.listIcon} ${classes.footIcon}`} />
-					<li>Sign out</li>
+					<li onClick={signOut}>Sign out</li>
 				</ul>
 			</footer>
 		</div>

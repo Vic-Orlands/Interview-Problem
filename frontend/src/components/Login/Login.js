@@ -9,6 +9,7 @@ import axios from 'axios';
 // import { withCookies, Cookies } from 'react-cookie';
 const Login = () => {
 	let history = useHistory();
+	const [ show, setShow ] = useState(false);
 	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 	const [ error, setError ] = useState(false);
 	const [ isSubmitting, setIsSubmitting ] = useState(false);
@@ -17,6 +18,10 @@ const Login = () => {
 		username: '',
 		password: ''
 	});
+
+	const onClickShow = () => {
+		setShow(true);
+	};
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
@@ -37,6 +42,7 @@ const Login = () => {
 			} else {
 				setIsLoggedIn(false);
 				setError(response.data);
+				setIsSubmitting(false);
 				setTimeout(() => {
 					setError(false);
 				}, 4000);
@@ -77,13 +83,24 @@ const Login = () => {
 					<label htmlFor="password">Password</label>
 
 					<label htmlFor="password" className={classes['innerPasswrd']}>
-						<input
-							type="password"
-							name="password"
-							value={userLogin.password}
-							onChange={handleChange}
-							autoComplete="current-password"
-						/>
+						{!show ? (
+							<input
+								type="password"
+								name="password"
+								value={userLogin.password}
+								onChange={handleChange}
+								autoComplete="current-password"
+							/>
+						) : (
+							<input
+								type="text"
+								name="password"
+								value={userLogin.password}
+								onChange={handleChange}
+								autoComplete="current-password"
+							/>
+						)}
+						<span onClick={onClickShow}>Show</span>
 					</label>
 
 					{error ? <p className={classes['errorMsg']}>{error}</p> : ''}
