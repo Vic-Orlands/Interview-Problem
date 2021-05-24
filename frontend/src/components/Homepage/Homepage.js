@@ -32,7 +32,7 @@ const Homepage = () => {
 		}
 	};
 
-	// filtering the array when searching
+	// filtering the array when searching location and department
 	const search = (search) => {
 		let newList = [];
 		if (search !== '') {
