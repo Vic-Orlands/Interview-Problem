@@ -6,7 +6,6 @@ import axios from 'axios';
 
 import Nav from '../Nav/Nav';
 import Sidemenu from '../Sidemenu/Sidemenu';
-import { FaCommentsDollar } from 'react-icons/fa';
 
 const Homepage = () => {
 	const [openModal, setOpenModal] = useState(false);
@@ -47,22 +46,6 @@ const Homepage = () => {
 			newList = employees;
 		}
 		setFilteredEmployees(newList);
-	};
-
-	// filtering the array by availability
-	const filterAvailables = ({ target }) => {
-		let search = target.value;
-
-		let newArray = [];
-		if (search !== '') {
-			newArray = employees.filter((employ) => {
-				const str = employ.isAvailable;
-				return str === search;
-			});
-		} else {
-			newArray = employees;
-		}
-		setFilteredEmployees(newArray);
 	};
 
 	useEffect(() => {
